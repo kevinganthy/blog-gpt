@@ -36,17 +36,19 @@ jobs:
           cd app
           npm install
           npm run build 
-      - name: Init new repo in dist folder and commit generated files
-        run: |
-          git init
-          git add -A
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m 'deploy'
-      - name: Force push to destination branch
-        uses: ad-m/github-push-action@v0.5.0
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3.1.2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          force: true
-          directory: dist
+          path: ./app/dist
+          name: github-pages
+          
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}      
+    steps:
+      - name: Deploy GitHub Pages site
+        id: deployment
+        uses: actions/deploy-pages@v1.2.3
