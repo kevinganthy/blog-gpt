@@ -35,6 +35,7 @@ jobs:
           node-version: 18
           cache: 'npm'
       # Build the frontend
+      - run: cd app
       - run: npm ci
       - run: npm run build
       - name: Upload artifact
