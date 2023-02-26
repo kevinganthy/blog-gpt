@@ -28,12 +28,14 @@ jobs:
       # Récupère le code du dépôt Github dans l'environnement du runner
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v3.0.4
       - name: Install and Build
         run: |
           cd app
           npm install
           npm run build 
-      - name: Upload a Build Artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v3.1.2
         with:
           path: ./app/dist
@@ -45,5 +47,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/deploy-pages@v1
-        id: deployment
+      - name: Deploy GitHub Pages site
+        uses: actions/deploy-pages@v1.2.4
