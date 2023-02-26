@@ -39,7 +39,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
-          name: artifact
           path: ./app/dist
           
   deploy:
@@ -47,9 +46,8 @@ jobs:
     needs: build
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}      
     steps:
       - name: Deploy GitHub Pages site
         id: deployment
-        uses: actions/deploy-pages@v1.2.4
-        with:
-          artifact_name: artifact
+        uses: actions/deploy-pages@v1
