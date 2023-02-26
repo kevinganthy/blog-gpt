@@ -36,8 +36,12 @@ jobs:
           cd app
           npm install
           npm run build 
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1.0.7
+        with:
+          path: /public
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3.1.2
         with:
           path: ./app/dist
           name: github-pages
