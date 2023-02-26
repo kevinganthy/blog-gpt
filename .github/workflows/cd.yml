@@ -37,7 +37,7 @@ jobs:
           npm install
           npm run build 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v1
         with:
           path: ./app/dist
           
