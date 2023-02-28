@@ -9,4 +9,3 @@ Il vous faudra un token Open AI pour tester. A récupérer [ici](https://platfor
 Allez ensuite sur la page hébergée par GitHub : [Blog GPT](https://kevinganthy.github.io/blog-gpt/).
 
 Have fun !
-
